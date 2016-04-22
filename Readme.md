@@ -45,22 +45,22 @@ Once you're done editing, restart the application and test your changes:
     $ git clone https://github.com/eea/eea.docker.eni-seis.git
     $ cd eea.docker.eni-seis/deploy
 
-Deploy on staging:
+Deploy on staging/demo:
 
-    $ rancher-compose -e staging.env up -d
+    $ rancher-compose --project-name eni-seis --env-file staging.env up -d
 
 Deploy in production:
 
-    $ rancher-compose -e production.env up -d
+    $ rancher-compose --project-name eni-seis --env-file production.env up -d
 
 Upgrade:
 
-    $ rancher-compose -e production.env up -d --upgrade
+    $ rancher-compose --project-name eni-seis --env-file production.env up -d --upgrade
 
 ...and confirm that the upgrade went well:
 
-    $ rancher-compose -e production.env up -d --confirm-upgrade
+    $ rancher-compose --project-name eni-seis --env-file production.env up -d --confirm-upgrade
 
 ...or roll-back:
 
-    $ rancher-compose -e production.env up -d --roll-back
+    $ rancher-compose --project-name eni-seis --env-file production.env up -d --roll-back

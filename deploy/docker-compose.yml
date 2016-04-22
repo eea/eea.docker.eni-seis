@@ -1,0 +1,96 @@
+haproxy:
+  image: eeacms/haproxy
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: eni-seis=yes
+  tty: true
+  stdin_open: true
+  ports:
+  - 8080:5000
+  links:
+  - plone
+  environment:
+  - BACKENDS=plone
+  - BACKENDS_PORT=8080
+  - DNS_ENABLED=true
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+
+memcached:
+  image: eeacms/memcached
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: eni-seis=yes
+  tty: true
+  stdin_open: true
+
+postfix:
+  image: eeacms/postfix:eionet
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: eni-seis=yes
+  tty: true
+  stdin_open: true
+  environment:
+  - MTP_HOST=eea.europa.eu
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+
+plone:
+  image: eeacms/plone-eni-seis
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: eni-seis=yes
+  tty: true
+  stdin_open: true
+  links:
+  - zeoserver
+  - memcached
+  - postfix
+  environment:
+    ZOPE_MODE: zeo_client
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+
+async:
+  image: eeacms/plone-eni-seis
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: eni-seis=yes
+  tty: true
+  stdin_open: true
+  links:
+  - zeoserver
+  - memcached
+  - postfix
+  environment:
+  - ZOPE_MODE=zeo_async
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+
+zeoserver:
+  image: eeacms/plone-eni-seis
+  labels:
+    io.rancher.sidekicks: data
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: eni-seis=yes
+  tty: true
+  stdin_open: true
+  volumes_from:
+  - data
+  environment:
+  - ZOPE_MODE=zeoserver
+  volumes:
+  - /etc/localtime:/etc/localtime:ro
+
+data:
+  image: busybox
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.start_once: 'true'
+  tty: true
+  stdin_open: true
+  volumes:
+  - /data/filestorage
+  - /data/blobstorage
+  command: ["chown", "-R", "500:500", "/data"]
