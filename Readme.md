@@ -29,7 +29,10 @@ Start the application:
     $ docker-compose up
 
 Within your favorite browser head to http://localhost:8080,
-add a Plone site and install `eni.seis.theme` and `eni.seis.content` add-ons.
+add a Plone site and install the following add-ons:
+* `EEA Plone buildout profile`
+* `eni.seis.theme`
+* `eni.seis.content`
 
 Now you are ready to develop Plone Add-ons within `src` folder:
 
