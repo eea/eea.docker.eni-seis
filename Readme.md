@@ -45,6 +45,13 @@ Once you're done editing, restart the application and test your changes:
 
 ### Deployment
 
+Pre-requirements:
+
+* [Rancher Compose](http://docs.rancher.com/rancher/rancher-compose/)
+* Within Rancher UI register min 1 hosts with label: `eni-seis=yes`
+
+On your laptop:
+
     $ git clone https://github.com/eea/eea.docker.eni-seis.git
     $ cd eea.docker.eni-seis/deploy
 
