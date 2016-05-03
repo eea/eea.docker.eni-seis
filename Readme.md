@@ -2,11 +2,11 @@
 
 ## Installation
 
-1. Install [Docker](https://www.docker.com/).
+1. Install [Docker 1.10.3](https://docs.docker.com/engine/installation/linux/centos/).
 
-2. Install [Docker Compose](https://docs.docker.com/compose/).
+2. Install [Docker Compose 1.6.2](https://docs.docker.com/compose/install/).
 
-3. Install [Rancher Compose](http://www.rancher.com)
+3. Install [Rancher Compose 0.7.4+](http://www.rancher.com)
 
 ## Usage
 
