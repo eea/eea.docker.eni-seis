@@ -1,7 +1,8 @@
 plone:
-  image: eeacms/plone-eni-seis
+  image: eeacms/plone-eni-seis:devel
   ports:
   - "8080:8080"
+  - "4444:4444"
   volumes:
   - ./src:/plone/instance/src
   volumes_from:
