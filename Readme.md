@@ -57,11 +57,13 @@ On your laptop:
 
 Deploy on staging/demo:
 
-    $ rancher-compose --project-name eni-seis --env-file staging.env up -d
+    $ rancher-compose --project-name eni-seis-demo-east --env-file staging-east.env up -d
+    $ rancher-compose --project-name eni-seis-demo-south --env-file staging-south.env up -d
 
 Deploy in production:
 
-    $ rancher-compose --project-name eni-seis --env-file production.env up -d
+    $ rancher-compose --project-name eni-seis-east --env-file production-east.env up -d
+    $ rancher-compose --project-name eni-seis-south --env-file production-south.env up -d
 
 Upgrade:
 
