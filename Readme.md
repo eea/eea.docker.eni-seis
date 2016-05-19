@@ -42,6 +42,10 @@ Once you're done editing, restart the application and test your changes:
 
     $ docker-compose restart
 
+Debugging:
+
+    import rpdb; rpdb.set_trace('0.0.0.0')
+    $ nc localhost 4444
 
 ### Deployment
 
