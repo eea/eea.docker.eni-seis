@@ -44,6 +44,7 @@ plone:
   - postfix
   environment:
     ZOPE_MODE: zeo_client
+    LAST_UPDATED: ${last_updated}
   volumes:
   - /etc/localtime:/etc/localtime:ro
 
