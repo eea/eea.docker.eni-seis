@@ -33,7 +33,7 @@ postfix:
   - /etc/localtime:/etc/localtime:ro
 
 plone:
-  image: eeacms/plone-eni-seis
+  image: eeacms/plone-eni-seis:2016.07.29
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
   tty: true
@@ -44,7 +44,6 @@ plone:
   - postfix
   environment:
     ZOPE_MODE: zeo_client
-    LAST_UPDATED: ${last_updated}
   volumes:
   - /etc/localtime:/etc/localtime:ro
 
