@@ -59,6 +59,12 @@ On your laptop:
     $ git clone https://github.com/eea/eea.docker.eni-seis.git
     $ cd eea.docker.eni-seis/deploy
 
+Set Postfix credentials:
+
+    $ cp .secret.example .secret
+    $ vim .secret
+    $ source .secret
+
 Deploy on staging/demo:
 
     $ rancher-compose --project-name eni-seis-demo-east --env-file staging-east.env up -d

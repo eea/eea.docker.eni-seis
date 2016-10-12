@@ -29,6 +29,8 @@ postfix:
   stdin_open: true
   environment:
   - MTP_HOST=eea.europa.eu
+  - MTP_USER=${POSTFIX_USER}
+  - MTP_PASS=${POSTFIX_PASS}
   volumes:
   - /etc/localtime:/etc/localtime:ro
 
