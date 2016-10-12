@@ -1,10 +1,6 @@
 haproxy:
   image: eeacms/haproxy
-  labels:
-    io.rancher.container.pull_image: always
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   links:
   - plone
   environment:
@@ -16,19 +12,17 @@ haproxy:
 
 memcached:
   image: eeacms/memcached
+  environment:
+  - MEMCACHED_MEMORY=2048
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
 
 postfix:
   image: eeacms/postfix:eionet
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   environment:
-  - MTP_HOST=eea.europa.eu
+  - MTP_HOST=eni-seis.eionet.europa.eu
   - MTP_USER=${POSTFIX_USER}
   - MTP_PASS=${POSTFIX_PASS}
   volumes:
@@ -38,8 +32,6 @@ plone:
   image: eeacms/plone-eni-seis:2016.10.11
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   links:
   - zeoserver
   - memcached
@@ -53,8 +45,6 @@ async:
   image: eeacms/plone-eni-seis:2016.10.11
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   links:
   - zeoserver
   - memcached
@@ -69,8 +59,6 @@ zeoserver:
   labels:
     io.rancher.sidekicks: data
     io.rancher.scheduler.affinity:host_label: eni-seis-data=yes
-  tty: true
-  stdin_open: true
   volumes_from:
   - data
   environment:
