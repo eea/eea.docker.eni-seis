@@ -1,80 +1,67 @@
 haproxy:
   image: eeacms/haproxy
   labels:
-    io.rancher.container.pull_image: always
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   links:
   - plone
   environment:
   - BACKENDS=plone
   - BACKENDS_PORT=8080
   - DNS_ENABLED=true
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
+  - TZ=Europe/Copenhagen
 
 memcached:
   image: eeacms/memcached
+  environment:
+  - MEMCACHED_MEMORY=2048
+  - TZ=Europe/Copenhagen
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
 
 postfix:
   image: eeacms/postfix:eionet
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   environment:
-  - MTP_HOST=eea.europa.eu
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
+  - MTP_HOST=eni-seis.eionet.europa.eu
+  - MTP_USER=${POSTFIX_USER}
+  - MTP_PASS=${POSTFIX_PASS}
+  - TZ=Europe/Copenhagen
 
 plone:
   image: eeacms/plone-eni-seis:2016.10.14
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   links:
   - zeoserver
   - memcached
   - postfix
   environment:
-    ZOPE_MODE: zeo_client
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
+  - ZOPE_MODE=zeo_client
+  - TZ=Europe/Copenhagen
 
 async:
   image: eeacms/plone-eni-seis:2016.10.14
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
-  tty: true
-  stdin_open: true
   links:
   - zeoserver
   - memcached
   - postfix
   environment:
   - ZOPE_MODE=zeo_async
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
+  - TZ=Europe/Copenhagen
 
 zeoserver:
   image: eeacms/plone-eni-seis:2016.10.14
   labels:
     io.rancher.sidekicks: data
     io.rancher.scheduler.affinity:host_label: eni-seis-data=yes
-  tty: true
-  stdin_open: true
   volumes_from:
   - data
   environment:
   - ZOPE_MODE=zeoserver
-  volumes:
-  - /etc/localtime:/etc/localtime:ro
+  - TZ=Europe/Copenhagen
 
 data:
   image: busybox

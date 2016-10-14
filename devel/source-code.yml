@@ -1,5 +1,5 @@
 source_code:
-  image: eeacms/plone-eni-seis
+  image: eeacms/plone-eni-seis:devel
   entrypoint: ['buildout']
   command: ['-c', 'source.cfg']
   volumes:

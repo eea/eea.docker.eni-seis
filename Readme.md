@@ -59,24 +59,28 @@ On your laptop:
     $ git clone https://github.com/eea/eea.docker.eni-seis.git
     $ cd eea.docker.eni-seis/deploy
 
+Set Postfix credentials:
+
+    $ cp .secret.example .secret
+    $ vim .secret
+    $ source .secret
+
 Deploy on staging/demo:
 
-    $ rancher-compose --project-name eni-seis-demo-east --env-file staging-east.env up -d
-    $ rancher-compose --project-name eni-seis-demo-south --env-file staging-south.env up -d
+    $ rancher-compose --project-name eni-seis -e staging.env up -d
 
 Deploy in production:
 
-    $ rancher-compose --project-name eni-seis-east --env-file production-east.env up -d
-    $ rancher-compose --project-name eni-seis-south --env-file production-south.env up -d
+    $ rancher-compose --project-name eni-seis -e production.env up -d
 
 Upgrade:
 
-    $ rancher-compose --project-name eni-seis --env-file production.env up -d --upgrade
+    $ rancher-compose --project-name eni-seis -e production.env up -d --upgrade --interval 300000 --batch-size 1
 
 ...and confirm that the upgrade went well:
 
-    $ rancher-compose --project-name eni-seis --env-file production.env up -d --confirm-upgrade
+    $ rancher-compose --project-name eni-seis -e production.env up -d --confirm-upgrade
 
 ...or roll-back:
 
-    $ rancher-compose --project-name eni-seis --env-file production.env up -d --roll-back
+    $ rancher-compose --project-name eni-seis -e production.env up -d --roll-back

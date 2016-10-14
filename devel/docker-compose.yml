@@ -3,15 +3,20 @@ plone:
   ports:
   - "8080:8080"
   - "4444:4444"
+  links:
+  - memcached:memcached
+  - postfix:postfix
   volumes:
   - ./src:/plone/instance/src
-  volumes_from:
-  - plone_data
+  - eni-seis-data:/data
   command: ["fg"]
 
-plone_data:
-  image: busybox
-  volumes:
-  - /data/filestorage
-  - /data/blobstorage
-  command: ["chown", "-R", "500:500", "/data"]
+memcached:
+  image: eeacms/memcached
+  environment:
+  - MEMCACHED_MEMORY=2048
+
+postfix:
+  image: eeacms/postfix
+  environment:
+  - MTP_HOST=devel.eni-seis.eionet.europa.eu
