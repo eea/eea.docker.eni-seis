@@ -33,7 +33,7 @@ postfix:
   - /etc/localtime:/etc/localtime:ro
 
 plone:
-  image: eeacms/plone-eni-seis:2016.10.11
+  image: eeacms/plone-eni-seis:2016.10.14
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
   tty: true
@@ -48,7 +48,7 @@ plone:
   - /etc/localtime:/etc/localtime:ro
 
 async:
-  image: eeacms/plone-eni-seis:2016.10.11
+  image: eeacms/plone-eni-seis:2016.10.14
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
   tty: true
@@ -63,7 +63,7 @@ async:
   - /etc/localtime:/etc/localtime:ro
 
 zeoserver:
-  image: eeacms/plone-eni-seis:2016.10.11
+  image: eeacms/plone-eni-seis:2016.10.14
   labels:
     io.rancher.sidekicks: data
     io.rancher.scheduler.affinity:host_label: eni-seis-data=yes
