@@ -20,3 +20,10 @@ postfix:
   image: eeacms/postfix
   environment:
   - MTP_HOST=devel.eni-seis.eionet.europa.eu
+
+cloud9:
+  image: eeacms/cloud9
+  ports:
+  - "9000:8080"
+  volumes:
+  - ./:/cloud9/workspace:z
