@@ -29,7 +29,7 @@ postfix:
   - TZ=Europe/Copenhagen
 
 plone:
-  image: eeacms/plone-eni-seis:2016.11.01
+  image: eeacms/plone-eni-seis:2016.11.08
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
   links:
@@ -41,7 +41,7 @@ plone:
   - TZ=Europe/Copenhagen
 
 async:
-  image: eeacms/plone-eni-seis:2016.11.01
+  image: eeacms/plone-eni-seis:2016.11.08
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
   links:
@@ -53,7 +53,7 @@ async:
   - TZ=Europe/Copenhagen
 
 zeoserver:
-  image: eeacms/plone-eni-seis:2016.11.01
+  image: eeacms/plone-eni-seis:2016.11.08
   labels:
     io.rancher.sidekicks: data
     io.rancher.scheduler.affinity:host_label: eni-seis-data=yes
