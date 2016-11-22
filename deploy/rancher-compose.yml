@@ -28,6 +28,8 @@ postfix:
     healthy_threshold: 2
 plone:
   scale: ${PLONE_SCALE}
+  upgrade_strategy:
+    start_first: true
   health_check:
     port: 8080
     interval: 5000
@@ -38,6 +40,8 @@ plone:
     healthy_threshold: 2
 async:
   scale: ${ASYNC_SCALE}
+  upgrade_strategy:
+    start_first: true
   health_check:
     port: 8080
     interval: 5000
@@ -48,6 +52,8 @@ async:
     healthy_threshold: 2
 zeoserver:
   scale: 1
+  upgrade_strategy:
+    start_first: true
   health_check:
     port: 8100
     interval: 5000
