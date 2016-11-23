@@ -1,7 +1,24 @@
+# Note: you need to set (on the host machine) the
+# ownership for the src folder to uid 500, in order
+# for the buildout command to succeed.
+# You can use the second service (console) to achieve
+# that. In the opened shell, run:
+# chown -R 500 /plone/instance/src
 source_code:
   image: eeacms/plone-eni-seis:devel
   entrypoint: ['buildout']
   command: ['-c', 'source.cfg']
+  volumes:
+  - ./src/source.cfg:/plone/instance/source.cfg:ro
+  - ./src:/plone/instance/src:z
+
+# You can start a new console with
+# docker exec -it devel_console_1 sh
+# You can now run any manual command with that shell
+console:
+  image: eeacms/plone-eni-seis:devel
+  entrypoint: ['bash']
+  command: ['-c', "tail -f /dev/null"]
   volumes:
   - ./src/source.cfg:/plone/instance/source.cfg:ro
   - ./src:/plone/instance/src:z
