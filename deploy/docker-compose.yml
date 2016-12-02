@@ -32,6 +32,7 @@ plone:
   image: eeacms/plone-eni-seis:latest
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
+    io.rancher.container.pull_image: always
   links:
   - zeoserver
   - memcached
@@ -44,6 +45,7 @@ async:
   image: eeacms/plone-eni-seis:latest
   labels:
     io.rancher.scheduler.affinity:host_label: eni-seis=yes
+    io.rancher.container.pull_image: always
   links:
   - zeoserver
   - memcached
@@ -57,6 +59,7 @@ zeoserver:
   labels:
     io.rancher.sidekicks: data
     io.rancher.scheduler.affinity:host_label: eni-seis-data=yes
+    io.rancher.container.pull_image: always
   volumes_from:
   - data
   environment:
