@@ -24,9 +24,17 @@ Now get the source code:
     $ cd eea.docker.eni-seis/devel
     $ docker-compose -f source-code.yml up
 
-Start the application:
+Start the debug container:
 
-    $ docker-compose up
+    $ docker-compose up -d
+
+Then connect with bash to the debug container:
+
+    $ docker exec -it devel_debug_1 bash
+    
+Inside the container start the Plone instance in foreground:
+
+    $ bin/standalone fg
 
 Within your favorite browser head to http://localhost:8080,
 add a Plone site and install the following add-ons:
@@ -38,14 +46,10 @@ Now you are ready to develop Plone Add-ons within `src` folder:
 
     $ ls -l src/
 
-Once you're done editing, restart the application and test your changes:
-
-    $ docker-compose restart
-
-Debugging:
-
-    import rpdb; rpdb.set_trace('0.0.0.0')
-    $ nc localhost 4444
+You can do normal Plone development, including setting breakpoints 
+with pdb. The eggs used in the buildout are in the parent folder of
+the default location. If you need to debug something, to set a 
+breakpoint, you can use vi to edit files.
 
 ### Deployment
 
