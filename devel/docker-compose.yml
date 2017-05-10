@@ -1,41 +1,8 @@
-plone:
-  image: eeacms/plone-eni-seis:latest
-  ports:
-    - "8080:8080"
-    - "4444:4444"
-  links:
-    - memcached:memcached
-    - postfix:postfix
-  volumes:
-    - ./src:/plone/instance/src
-    - eni-seis-data:/data
-  command: ["fg"]
-
 debug:
   image: eeacms/plone-eni-seis:latest
   ports:
     - "8090:8080"
-  links:
-    - memcached:memcached
-    - postfix:postfix
   volumes:
     - ./src:/plone/instance/src
     - eni-seis-data:/data
   entrypoint: sh -c "tail -f /dev/null"
-
-memcached:
-  image: eeacms/memcached
-  environment:
-    - MEMCACHED_MEMORY=2048
-
-postfix:
-  image: eeacms/postfix
-  environment:
-    - MTP_HOST=devel.eni-seis.eionet.europa.eu
-
-cloud9:
-  image: eeacms/cloud9
-  ports:
-    - "9000:8080"
-  volumes:
-    - ./:/cloud9/workspace:z
