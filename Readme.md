@@ -75,10 +75,12 @@ Deploy on staging/demo:
 
 Deploy in production:
 
+    $ source .secret
     $ rancher-compose --project-name eni-seis -e production.env up -d
 
 Upgrade:
 
+    $ source .secret
     $ rancher-compose --project-name eni-seis -e production.env up -d --upgrade --interval 300000 --batch-size 1
 
 ...and confirm that the upgrade went well:
