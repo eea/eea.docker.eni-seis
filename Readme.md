@@ -55,7 +55,7 @@ breakpoint, you can use vi to edit files.
 
 Pre-requirements:
 
-* [Rancher Compose](http://docs.rancher.com/rancher/rancher-compose/)
+* [Rancher CLI](http://rancher.com/docs/rancher/v1.2/en/cli/)
 * Within Rancher UI register min 1 hosts with label: `eni-seis=yes`
 
 On your laptop:
@@ -69,24 +69,19 @@ Set Postfix credentials:
     $ vim .secret
     $ source .secret
 
-Deploy on staging/demo:
-
-    $ rancher-compose --project-name eni-seis -e staging.env up -d
-
-Deploy in production:
-
-    $ source .secret
-    $ rancher-compose --project-name eni-seis -e production.env up -d
+Deploy on staging/demo or production:
+    $ rancher config (add your stack and your API key)
+    $ rancher up -d -s eni-seis-eionet
 
 Upgrade:
 
     $ source .secret
-    $ rancher-compose --project-name eni-seis -e production.env up -d --upgrade --interval 300000 --batch-size 1
+    $ rancher up -d --upgrade --interval 300000 --batch-size 1 -s eni-seis-eionet
 
 ...and confirm that the upgrade went well:
 
-    $ rancher-compose --project-name eni-seis -e production.env up -d --confirm-upgrade
+    $ rancher up -d --confirm-upgrade -s eni-seis-eionet
 
 ...or roll-back:
 
-    $ rancher-compose --project-name eni-seis -e production.env up -d --roll-back
+    $ rancher up -d --roll-back -s eni-seis-eionet
