@@ -73,6 +73,6 @@ data:
   tty: true
   stdin_open: true
   volumes:
-  - ${filestorage}:/data/filestorage
-  - ${blobstorage}:/data/blobstorage
+  - eni-seis-filestorage:/data/filestorage
+  - eni-seis-blobstorage:/data/blobstorage
   command: ["chown", "-R", "500:500", "/data"]

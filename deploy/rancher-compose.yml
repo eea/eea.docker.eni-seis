@@ -27,7 +27,7 @@ postfix:
     response_timeout: 3000
     healthy_threshold: 2
 plone:
-  scale: ${PLONE_SCALE}
+  scale: 4
   upgrade_strategy:
     start_first: true
   health_check:
@@ -39,7 +39,7 @@ plone:
     response_timeout: 6000
     healthy_threshold: 2
 async:
-  scale: ${ASYNC_SCALE}
+  scale: 1
   upgrade_strategy:
     start_first: true
   health_check:
