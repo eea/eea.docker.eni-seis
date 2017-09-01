@@ -70,6 +70,7 @@ Set Postfix credentials:
     $ source .secret
 
 Deploy on staging/demo or production:
+
     $ rancher config (add your stack and your API key)
     $ rancher up -d -s eni-seis-eionet
 
