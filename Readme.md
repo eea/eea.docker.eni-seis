@@ -51,7 +51,7 @@ with pdb. The eggs used in the buildout are in the parent folder of
 the default location. If you need to debug something, to set a 
 breakpoint, you can use vi to edit files.
 
-### Deployment
+### Demo website deployment
 
 Pre-requirements:
 
