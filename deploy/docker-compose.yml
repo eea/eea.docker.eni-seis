@@ -41,6 +41,20 @@ plone:
   - ZOPE_MODE=zeo_client
   - TZ=Europe/Copenhagen
 
+plonedebug:
+  image: eeacms/plone-eni-seis:5.5.8
+  labels:
+    io.rancher.scheduler.affinity:host_label: eni-seis=yes
+    io.rancher.container.pull_image: always
+  links:
+  - zeoserver
+  - memcached
+  - postfix
+  environment:
+  - ZOPE_MODE=zeo_client
+  - TZ=Europe/Copenhagen
+  entrypoint: sh -c "tail -f /dev/null"
+
 async:
   image: eeacms/plone-eni-seis:5.5.8
   labels:
