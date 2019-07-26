@@ -51,7 +51,10 @@ with pdb. The eggs used in the buildout are in the parent folder of
 the default location. If you need to debug something, to set a 
 breakpoint, you can use vi to edit files.
 
-### Demo website deployment
+### EEA Rancher Catalog
+https://github.com/eea/eea.rancher.catalog/tree/master/templates/eni-seis-eionet
+
+### Demo website deployment (deprecated)
 
 Pre-requirements:
 
