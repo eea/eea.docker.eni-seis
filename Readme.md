@@ -54,7 +54,11 @@ breakpoint, you can use vi to edit files.
 ### Demo website deployment
 
 Release a new plone image: https://github.com/eea/eea.docker.plone-eni-seis
+
 Check build status: https://cloud.docker.com/u/eeacms/repository/docker/eeacms/plone-eni-seis/builds
+
 Test the image locally
+
 Create a new rancher catalog template: https://github.com/eea/eea.rancher.catalog/tree/master/templates/eni-seis-eionet
+
 Upgrade ENI SEIS staging website: https://kvm-rancher-s3.eea.europa.eu/env/1a433/apps/stacks
