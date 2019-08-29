@@ -51,41 +51,10 @@ with pdb. The eggs used in the buildout are in the parent folder of
 the default location. If you need to debug something, to set a 
 breakpoint, you can use vi to edit files.
 
-### EEA Rancher Catalog
-https://github.com/eea/eea.rancher.catalog/tree/master/templates/eni-seis-eionet
+### Demo website deployment
 
-### Demo website deployment (deprecated)
-
-Pre-requirements:
-
-* [Rancher CLI](http://rancher.com/docs/rancher/v1.2/en/cli/)
-* Within Rancher UI register min 1 hosts with label: `eni-seis=yes`
-
-On your laptop:
-
-    $ git clone https://github.com/eea/eea.docker.eni-seis.git
-    $ cd eea.docker.eni-seis/deploy
-
-Set Postfix credentials:
-
-    $ cp .secret.example .secret
-    $ vim .secret
-    $ source .secret
-
-Deploy on staging/demo or production:
-
-    $ rancher config (add your stack and your API key)
-    $ rancher up -d -s eni-seis-eionet
-
-Upgrade:
-
-    $ source .secret
-    $ rancher up -d --upgrade --interval 300000 --batch-size 1 -s eni-seis-eionet
-
-...and confirm that the upgrade went well:
-
-    $ rancher up -d --confirm-upgrade -s eni-seis-eionet
-
-...or roll-back:
-
-    $ rancher up -d --roll-back -s eni-seis-eionet
+Release a new plone image: https://github.com/eea/eea.docker.plone-eni-seis
+Check build status: https://cloud.docker.com/u/eeacms/repository/docker/eeacms/plone-eni-seis/builds
+Test the image locally
+Create a new rancher catalog template: https://github.com/eea/eea.rancher.catalog/tree/master/templates/eni-seis-eionet
+Upgrade ENI SEIS staging website: https://kvm-rancher-s3.eea.europa.eu/env/1a433/apps/stacks
